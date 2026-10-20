@@ -62,7 +62,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Run the 90 Automated Unit Tests & Pre-Flight Check
+### 2. Run the 93 Automated Unit Tests & Pre-Flight Check
 ```powershell
 python -m unittest discover -s tests -v
 python scripts/check_setup.py
@@ -104,6 +104,6 @@ fresh random seeds, then add your keys:
   inside `suraksha_action_agent`, not as its own process).
 - Payment Protocol: the demo emits `RequestPayment` and validates fields/hash format; it does not verify settlement on-chain.
 - Cannot be verified passively: bank beneficiary KYC name, CAPTCHA-gated GST filing status. The Skeptic says so.
-- Tests (90) run offline. Live Agentverse / ASI:One behaviour must be checked on your account.
+- Tests (93) run offline. Live Agentverse / ASI:One behaviour must be checked on your account.
 
 MIT licensed, see [`LICENSE`](LICENSE).
