@@ -422,8 +422,11 @@ class TestContextDevASI1AndActionPilotFixes(unittest.TestCase):
         self.assertGreaterEqual(len(res["advisories"]), 1)
 
     def test_67_asi1_explanation_preserves_deterministic_verdict(self):
+        from unittest import mock
         from suraksha_squad.asi1_client import explain_verdict_with_asi1
-        res = explain_verdict_with_asi1("HIGH_RISK_SCAM", ["[CRITICAL] Lookalike domain"], "Skeptic confirmed")
+        # Isolate from the developer's real .env: with no ASI:One key the explanation must be the deterministic template.
+        with mock.patch.dict(os.environ, {"ASI1_API_KEY": "", "ASI_ONE_API_KEY": ""}):
+            res = explain_verdict_with_asi1("HIGH_RISK_SCAM", ["[CRITICAL] Lookalike domain"], "Skeptic confirmed")
         self.assertIn("HIGH_RISK_SCAM", res["explanation"])
         self.assertFalse(res["llm_used"])
 
@@ -591,7 +594,7 @@ class TestContextDevASI1AndActionPilotFixes(unittest.TestCase):
 
     def test_84_hosted_suraksha_agent_has_ssrf_guard(self):
         from pathlib import Path
-        code = (Path(__file__).resolve().parent.parent / "agentverse_hosted" / "hosted_suraksha_agent.py").read_text()
+        code = (Path(__file__).resolve().parent.parent / "agentverse_hosted" / "hosted_suraksha_agent.py").read_text(encoding="utf-8")
         self.assertIn("is_safe_public_url", code)
         self.assertIn("169.254.169.254", code)
 
@@ -782,6 +785,3 @@ class TestLiveFetchRegression(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-
-
