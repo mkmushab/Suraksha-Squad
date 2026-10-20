@@ -1,0 +1,9 @@
+# Tested on Python 3.12 (3.10-3.13 supported). Pinned so judges get the same working install.
+fastapi==0.149.0
+uvicorn==0.54.0
+requests==2.33.1
+pydantic==2.14.1
+httpx==0.28.1
+uagents==0.26.1
+uagents-core==0.4.12
+python-dotenv==1.2.2

@@ -1,0 +1,9 @@
+{
+  "name": "suraksha-squad-node-dashboard",
+  "version": "2.0.0",
+  "description": "Optional Node.js Express proxy & live dashboard for Suraksha Squad 12-Agent ASI:One Investigator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

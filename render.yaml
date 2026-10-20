@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: suraksha-squad-web
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      # Set these in the Render dashboard (Environment tab). They are never stored in git.
+      - key: ASI1_API_KEY
+        sync: false
+      - key: CTX_API_KEY
+        sync: false

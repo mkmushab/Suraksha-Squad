@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraksha Squad — 12-Agent ASI:One Scam Investigator | Fetch-A-Thon 3.0</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-2: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --indigo: #6366f1;
+      --danger: #ef4444;
+      --warn: #f59e0b;
+      --safe: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top right, #1e1b4b, #0b1120 60%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .shield-badge {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 20px;
+    }
+    .brand h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .brand p { font-size: 12px; color: var(--muted); }
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      font-size: 11px; font-weight: 600; padding: 5px 10px;
+      border-radius: 999px; background: var(--panel-2);
+      border: 1px solid var(--border); color: #cbd5e1;
+    }
+    .pill.live { border-color: var(--safe); color: #6ee7b7; }
+    .container {
+      max-width: 1360px; margin: 24px auto; padding: 0 20px;
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 22px;
+    }
+    @media (max-width: 1024px) { .container { grid-template-columns: 1fr; } }
+    .card {
+      background: rgba(17, 24, 39, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(51,65,85,0.6);
+    }
+    .card-tag {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent); font-weight: 700;
+    }
+    .preset-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 8px; margin-bottom: 14px;
+    }
+    .preset-btn {
+      background: var(--panel-2); border: 1px solid var(--border);
+      color: var(--text); padding: 9px 11px; border-radius: 8px;
+      font-size: 12px; text-align: left; cursor: pointer; transition: 0.15s;
+    }
+    .preset-btn:hover { border-color: var(--accent); background: #1e293b; }
+    .preset-btn.safe-preset { border-color: rgba(16, 185, 129, 0.5); }
+    textarea, select {
+      width: 100%; background: #0f172a; border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; padding: 10px 12px;
+      font-family: inherit; font-size: 13px; margin-top: 6px; margin-bottom: 12px;
+    }
+    label { font-size: 12px; font-weight: 600; color: #cbd5e1; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #0284c7);
+      color: white; border: none; padding: 11px 18px; border-radius: 8px;
+      font-weight: 700; font-size: 13px; cursor: pointer;
+    }
+    .btn-secondary {
+      background: var(--panel-2); color: var(--text);
+      border: 1px solid var(--border); padding: 10px 14px;
+      border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer;
+    }
+    .verdict-banner {
+      padding: 16px; border-radius: 10px; margin-bottom: 14px;
+      border-left: 5px solid var(--border);
+    }
+    .verdict-HIGH_RISK_SCAM { background: rgba(239, 68, 68, 0.14); border-left-color: var(--danger); }
+    .verdict-SUSPICIOUS_CAUTION { background: rgba(245, 158, 11, 0.14); border-left-color: var(--warn); }
+    .verdict-LOOKS_OK { background: rgba(16, 185, 129, 0.14); border-left-color: var(--safe); }
+    .evidence-list { list-style: none; margin: 10px 0; }
+    .evidence-list li {
+      padding: 8px 10px; background: #0f172a; border: 1px solid var(--border);
+      border-radius: 7px; margin-bottom: 6px; font-size: 12.5px;
+    }
+    .skeptic-box {
+      background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.45);
+      border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 12.5px;
+    }
+    .agent-grid {
+      display: grid; grid-template-columns: 1fr; gap: 8px; max-height: 640px; overflow-y: auto;
+    }
+    .agent-row {
+      background: #0f172a; border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 12px; font-size: 12px;
+    }
+    .agent-addr {
+      font-family: monospace; font-size: 11px; color: var(--accent);
+      word-break: break-all; margin-top: 3px;
+    }
+    pre.draft-box {
+      background: #090d16; border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px; font-size: 11.5px;
+      white-space: pre-wrap; color: #e2e8f0; margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="shield-badge">🛡️</div>
+      <div>
+        <h1>Suraksha Squad — ASI:One Scam Investigator</h1>
+        <p>Fetch-A-Thon 3.0 · 12 Autonomous uAgents · Agent Chat Protocol v0.3.0 · Interactive Cards v1</p>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill live">● 12 Agents Online</span>
+      <span class="pill">SSRF Guard: Active</span>
+      <span class="pill">Read-Only Passive Tools</span>
+      <span class="pill">Context.dev MCP: Ready</span>
+      <span class="pill">Team: Mohd Mushab Khan · Abiha · Abhilasha Singh</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Column: ASI:One Interactive Card Workflow -->
+    <div>
+      
+      <!-- RUNTIME STATUS CARD (read-only; secrets are never accepted or shown by the web app) -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-tag">Runtime status</div>
+            <h3>Keys are configured on the server, never in the browser</h3>
+          </div>
+        </div>
+        <div id="envStatusSummary" style="font-size:12px; color:#94a3b8;">Loading status...</div>
+        <div id="orchNote" style="font-size:12px; color:#94a3b8; margin-top:8px;"></div>
+      </div>
+
+      <!-- CARD 1: FORM CARD -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-tag">ASI:One Interactive Card 1 · Form Card</div>
+            <h3>Paste Any Suspicious Message, Link, UPI ID, or GST Bill</h3>
+          </div>
+        </div>
+        <label>Quick-Load 3-Minute Judge Demo Scenarios (5 Scams + 1 Official 'Looks OK' Control):</label>
+        <div class="preset-grid" id="presetGrid"></div>
+
+        <label for="rawText">Message / SMS / WhatsApp / Link / UPI / GST Invoice Text:</label>
+        <textarea id="rawText" rows="4" placeholder="Paste suspicious SMS, link, UPI collect request, or GST invoice here..."></textarea>
+
+        <label for="emailHeaders">Optional Raw Email Headers (SPF / DKIM / DMARC / Reply-To):</label>
+        <textarea id="emailHeaders" rows="2" placeholder="Optional: Authentication-Results: spf=fail..."></textarea>
+
+        <div class="btn-row">
+          <button class="btn-primary" onclick="runInvestigation()">🔍 Run 12-Agent Investigation</button>
+          <button class="btn-secondary" onclick="loadScenario(5)">✅ Test Official Safe Link ('Looks OK')</button>
+        </div>
+      </div>
+
+      <!-- CARD 3: VERDICT CARD -->
+      <div class="card" id="verdictCard" style="display:none;">
+        <div class="card-header">
+          <div>
+            <div class="card-tag">ASI:One Interactive Card 3 · Verdict + Skeptic Audit Card</div>
+            <h3 id="verdictHeadline">Investigation Verdict</h3>
+          </div>
+          <span class="pill" id="verdictLatency"></span>
+        </div>
+        <div id="verdictBanner" class="verdict-banner">
+          <strong id="verdictBadge" style="font-size:15px;"></strong>
+          <p id="verdictExplanation" style="font-size:12.5px; margin-top:4px; color:#cbd5e1;"></p>
+        </div>
+        <h4>Top 5 Deterministic Tool Evidence Lines:</h4>
+        <ul class="evidence-list" id="evidenceList"></ul>
+
+        <div class="skeptic-box">
+          <strong>🧐 Agent 11 (`suraksha_skeptic`) Cross-Check & Honest Boundaries:</strong>
+          <p id="skepticNote" style="margin-top:4px;"></p>
+          <div id="contradictionsList" style="margin-top:6px; color:#fde68a;"></div>
+          <div id="unverifiableList" style="margin-top:6px; color:#94a3b8; font-size:11.5px;"></div>
+          <div id="trailPanel" style="margin-top:10px; color:#94a3b8; font-size:11.5px;"></div>
+        </div>
+      </div>
+
+      <!-- CARD 4: ACTION CARD -->
+      <div class="card" id="actionCard" style="display:none;">
+        <div class="card-header">
+          <div>
+            <div class="card-tag">ASI:One Interactive Card 4 · Citizen Action Card</div>
+            <h3>Ready-to-Use Protective Drafts (User-Controlled — Nothing Auto-Sent)</h3>
+          </div>
+        </div>
+        <div class="btn-row" style="margin-bottom:10px;">
+          <button class="btn-secondary" onclick="showDraft('1930')">📋 1930 / cybercrime.gov.in Draft</button>
+          <button class="btn-secondary" onclick="showDraft('bank')">🏦 Bank Nodal Dispute Email</button>
+          <button class="btn-secondary" onclick="showDraft('whatsapp')">💬 Hinglish Family WhatsApp Alert</button>
+          <button class="btn-primary" onclick="copyCurrentDraft()">Copy Active Draft</button>
+        </div>
+        <pre class="draft-box" id="draftViewer"></pre>
+      </div>
+    </div>
+
+    <!-- Right Column: CARD 2 (Progress Card) + 12-Agent Agentverse Address Inspector -->
+    <div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-tag">ASI:One Interactive Card 2 · Progress & Fleet Registry</div>
+            <h3>12 Registered Specialist uAgents & Derived Addresses</h3>
+          </div>
+        </div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:10px;">
+          Every agent derives a deterministic Fetch.ai Bech32 <code>agent1q...</code> address from its seed and executes passive, read-only tools.
+        </p>
+        <div class="agent-grid" id="agentGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let scenarios = [];
+    let currentDrafts = {};
+    let activeDraftKey = '1930';
+
+    function esc(v) {
+      return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    async function initDashboard() {
+      const [scenRes, agentRes] = await Promise.all([
+        fetch('/api/scenarios').then(r => r.json()),
+        fetch('/api/agents').then(r => r.json())
+      ]);
+      scenarios = scenRes.scenarios || [];
+      const grid = document.getElementById('presetGrid');
+      grid.innerHTML = scenarios.map((s, idx) => `
+        <button class="preset-btn ${s.expected_verdict === 'LOOKS_OK' ? 'safe-preset' : ''}" onclick="loadScenario(${idx})">
+          <strong>${esc(s.title)}</strong>
+        </button>
+      `).join('');
+
+      renderAgents(agentRes.agents || [], null);
+      if (scenarios.length > 0) loadScenario(0);
+    }
+
+    function renderAgents(agents, specialistReports) {
+      const repMap = {};
+      if (specialistReports) {
+        specialistReports.forEach(r => { repMap[r.agent_id] = r; });
+      }
+      const container = document.getElementById('agentGrid');
+      container.innerHTML = agents.map(a => {
+        const rep = repMap[a.id];
+        const statusBadge = rep
+          ? `<span class="pill" style="float:right;">${esc(rep.status)} · ${Number(rep.execution_ms).toFixed(1)}ms</span>`
+          : `<span class="pill" style="float:right;">READY</span>`;
+        return `
+          <div class="agent-row">
+            ${statusBadge}
+            <strong>${esc(a.name)}</strong> <span style="color:#94a3b8;">(${esc(a.role)})</span>
+            <div class="agent-addr">${esc(a.address)}</div>
+            <div style="color:#cbd5e1; margin-top:4px; font-size:11.5px;">🔧 Tool: ${esc(a.tool)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function loadScenario(idx) {
+      const s = scenarios[idx];
+      if (!s) return;
+      document.getElementById('rawText').value = s.raw_text;
+      document.getElementById('emailHeaders').value = s.raw_email_headers || '';
+      runInvestigation();
+    }
+
+    async function runInvestigation() {
+      const raw_text = document.getElementById('rawText').value;
+      const raw_email_headers = document.getElementById('emailHeaders').value || null;
+      const res = await fetch('/api/investigate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ raw_text, raw_email_headers })
+      });
+      const data = await res.json();
+
+      document.getElementById('verdictCard').style.display = 'block';
+      document.getElementById('actionCard').style.display = 'block';
+      document.getElementById('verdictHeadline').textContent = data.headline;
+      document.getElementById('verdictLatency').textContent = `${data.total_execution_ms} ms total`;
+
+      const banner = document.getElementById('verdictBanner');
+      banner.className = 'verdict-banner verdict-' + data.verdict;
+      document.getElementById('verdictBadge').textContent = data.verdict_badge;
+      document.getElementById('verdictExplanation').textContent = data.concise_explanation;
+
+      document.getElementById('evidenceList').innerHTML = (data.top_evidence_lines || [])
+        .map(line => `<li>${esc(line)}</li>`).join('');
+
+      document.getElementById('skepticNote').textContent = data.skeptic_audit.skeptic_note;
+      const contra = data.skeptic_audit.contradictions_found || [];
+      document.getElementById('contradictionsList').innerHTML = contra.length
+        ? contra.map(c => `<div>⚡ ${esc(c)}</div>`).join('')
+        : '';
+
+      const unv = data.skeptic_audit.unverifiable_boundaries || [];
+      document.getElementById('unverifiableList').innerHTML =
+        '<strong>Cannot Verify Passively (No Fake % Scores):</strong><br/>' +
+        unv.map(u => `• ${esc(u)}`).join('<br/>');
+
+      currentDrafts = {
+        '1930': data.action_drafts.cybercrime_1930_report,
+        'bank': `Subject: ${data.action_drafts.bank_dispute_email_subject}\n\n${data.action_drafts.bank_dispute_email_body}`,
+        'whatsapp': data.action_drafts.family_whatsapp_alert_hi_en
+      };
+      showDraft(activeDraftKey);
+
+      const orch = data.orchestration || {};
+      document.getElementById('orchNote').textContent = orch.note || '';
+      document.getElementById('trailPanel').innerHTML =
+        '<strong>Agent trail (' + esc(orch.mode || 'n/a') + '):</strong><br/>' +
+        (data.agent_trail || []).map(t =>
+          `• ${esc(t.agent)} · ${esc(t.tool)} · ${esc(t.status)} · ${Number(t.execution_ms).toFixed(1)}ms`).join('<br/>');
+
+      const agentRes = await fetch('/api/agents').then(r => r.json());
+      renderAgents(agentRes.agents || [], data.specialist_reports || []);
+    }
+
+    function showDraft(key) {
+      activeDraftKey = key;
+      document.getElementById('draftViewer').textContent = currentDrafts[key] || '';
+    }
+
+    function copyCurrentDraft() {
+      navigator.clipboard.writeText(currentDrafts[activeDraftKey] || '');
+      alert('Copied draft to clipboard! Review before submitting.');
+    }
+
+    
+    async function refreshEnvStatus() {
+      const h = await fetch('/api/health').then(r => r.json());
+      const es = h.env_status || {};
+      document.getElementById('envStatusSummary').innerHTML =
+        `<strong>ASI:One:</strong> <code>${esc(es.asi1_api_key || 'n/a')}</code> &nbsp;|&nbsp; ` +
+        `<strong>Context.dev:</strong> <code>${esc(es.context_dev_api_key || 'n/a')}</code> &nbsp;|&nbsp; ` +
+        `<strong>Agentverse:</strong> <code>${esc(es.agentverse_api_key || 'n/a')}</code>`;
+    }
+
+    refreshEnvStatus();
+    initDashboard();
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Secrets - NEVER commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Agent local state (uAgents creates these next to the running script)
+*.sqlite
+*.sqlite3
+*.db
+.agent_storage/
+wallet_*.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+node_modules/
