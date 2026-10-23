@@ -68,7 +68,7 @@ class TestSurakshaSquadFleet(unittest.TestCase):
         self.assertNotEqual(a1, a3)
 
     def test_04_instantiate_all_12_uagents(self):
-        with patch("uagents.network.AlmanacContract.get_registration_fee", return_value=0):
+      with patch("uagents.network.AlmanacContract.get_registration_fee", return_value=0):
         fleet = instantiate_uagents()
         self.assertEqual(len(fleet), 12)
         self.assertIn("agent_01_concierge", fleet)
