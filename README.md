@@ -1,10 +1,9 @@
 # 🛡️ Suraksha Squad — Multi-Agent Indian Scam & Invoice Investigator
 
 ![tag:innovationlab](https://img.shields.io/badge/innovationlab-3D8BD3)
-![tag:hackathon](https://img.shields.io/badge/hackathon-5F43F1)
 
-**Team MAA** — Mohd Mushab Khan (Team Leader) · Abiha · Abhilasha Singh  
-**Challenge:** Fetch-A-Thon 3.0 (GCET Edition) · **ASI:One Agent Challenge — From Intent to Action**  
+**Team MK** — Built by Mohd Mushab Khan  
+**ASI:One Agent Challenge — From Intent to Action**  
 **Protocols:** Fetch.ai `uAgents` · `Agent Chat Protocol v0.3.0` (`uagents_core.contrib.protocols.chat`) · `ASI:One Interactive Cards v1` · `Agent Payment Protocol v0.1.0` (`uagents_core.contrib.protocols.payment`)
 
 ## 🎯 The Real-World Problem
