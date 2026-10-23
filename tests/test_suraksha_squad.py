@@ -15,6 +15,7 @@ Verifies:
 from __future__ import annotations
 import os
 import unittest
+from unittest.mock import patch
 from app import app, HAS_FASTAPI, FallbackTestClient
 if HAS_FASTAPI:
     from fastapi.testclient import TestClient
@@ -67,6 +68,7 @@ class TestSurakshaSquadFleet(unittest.TestCase):
         self.assertNotEqual(a1, a3)
 
     def test_04_instantiate_all_12_uagents(self):
+        with patch("uagents.network.AlmanacContract.get_registration_fee", return_value=0):
         fleet = instantiate_uagents()
         self.assertEqual(len(fleet), 12)
         self.assertIn("agent_01_concierge", fleet)
